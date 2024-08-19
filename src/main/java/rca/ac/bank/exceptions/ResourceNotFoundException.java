@@ -1,4 +1,4 @@
-package rca.ac.bank;
+package rca.ac.bank.exceptions;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -8,6 +8,6 @@ import rca.ac.bank.entity.Customer;
 import java.util.UUID;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Account,UUID> {
+public interface CustomerRepository extends JpaRepository<Customer,UUID> {
 
 }

@@ -5,8 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -14,6 +13,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Customer {
@@ -22,10 +22,10 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @Column(name = "fname",nullable = false)
+    @Column(name = "firstname",nullable = false)
     private String firstname;
 
-    @Column(name = "lname",nullable = false)
+    @Column(name = "lastname",nullable = false)
     private String lastname;
 
     @NotBlank(message = "email is required")
@@ -42,12 +42,13 @@ public class Customer {
     @NotBlank(message = "phone number is required")
     @Pattern(regexp = "^\\+?[1-9]\\d{1,10}$", message = "invalid number")
     @Column(name = "mobile_phone", nullable = false,unique = true)
-    private int mobileNbr;
+    private int mobile_phone;
 
-    @Column(name = "updated_date",nullable = false)
+    @Column(name = "lastUpdateTime",nullable = false)
     private LocalDateTime lastUpdateTime;
 
-    public void setLastUpdateTime(LocalDateTime lastUpdateTime) {
+    @PreUpdate
+    public void setLastUpdateTime() {
         this.lastUpdateTime = LocalDateTime.now();
     }
 }
